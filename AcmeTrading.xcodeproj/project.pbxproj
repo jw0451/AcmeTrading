@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DE08D695254A0BFE007A58D7 /* BetterStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE08D694254A0BFE007A58D7 /* BetterStackView.swift */; };
 		DE08D6A9254A1539007A58D7 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DE08D6A0254A1539007A58D7 /* NSArray+PureLayout.m */; };
 		DE08D6AA254A1539007A58D7 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DE08D6A6254A1539007A58D7 /* NSLayoutConstraint+PureLayout.m */; };
 		DE08D6AB254A1539007A58D7 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DE08D6A7254A1539007A58D7 /* ALView+PureLayout.m */; };
@@ -16,6 +15,7 @@
 		DE08D6BD254B3B96007A58D7 /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE08D6BC254B3B96007A58D7 /* ColorHelper.swift */; };
 		DE08D6C1254B3D37007A58D7 /* UIImageView+loadURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE08D6C0254B3D37007A58D7 /* UIImageView+loadURL.swift */; };
 		DE08D6C9254B3FDE007A58D7 /* ProfileListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE08D6C8254B3FDE007A58D7 /* ProfileListViewModel.swift */; };
+		DE15AE91254CD6BE009BE58F /* BetterStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE08D69B254A14D5007A58D7 /* BetterStackView.swift */; };
 		DE3D64E12548D61800CA33F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D64E02548D61800CA33F7 /* AppDelegate.swift */; };
 		DE3D64E32548D61800CA33F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D64E22548D61800CA33F7 /* SceneDelegate.swift */; };
 		DE3D64E52548D61800CA33F7 /* ProfileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D64E42548D61800CA33F7 /* ProfileListViewController.swift */; };
@@ -64,7 +64,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DE08D694254A0BFE007A58D7 /* BetterStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BetterStackView.swift; path = ../../../Downloads/BetterStackView.swift; sourceTree = "<group>"; };
 		DE08D69B254A14D5007A58D7 /* BetterStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterStackView.swift; sourceTree = "<group>"; };
 		DE08D6A0254A1539007A58D7 /* NSArray+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PureLayout.m"; sourceTree = "<group>"; };
 		DE08D6A1254A1539007A58D7 /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
@@ -165,7 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				DE08D69A254A14D0007A58D7 /* Helpers */,
-				DE08D694254A0BFE007A58D7 /* BetterStackView.swift */,
 				DE3D65392549F53900CA33F7 /* Services */,
 				DE3D65382549F51E00CA33F7 /* Login */,
 				DE3D652D2549F33000CA33F7 /* Profile */,
@@ -384,9 +382,9 @@
 				DE08D6C9254B3FDE007A58D7 /* ProfileListViewModel.swift in Sources */,
 				DE3D65242548DCCD00CA33F7 /* APIService.swift in Sources */,
 				DE08D6AB254A1539007A58D7 /* ALView+PureLayout.m in Sources */,
-				DE08D695254A0BFE007A58D7 /* BetterStackView.swift in Sources */,
 				DE08D6B3254A15B8007A58D7 /* GradientButton.swift in Sources */,
 				DE08D6A9254A1539007A58D7 /* NSArray+PureLayout.m in Sources */,
+				DE15AE91254CD6BE009BE58F /* BetterStackView.swift in Sources */,
 				DE3D64E52548D61800CA33F7 /* ProfileListViewController.swift in Sources */,
 				DE3D64E12548D61800CA33F7 /* AppDelegate.swift in Sources */,
 				DE08D6B9254B3532007A58D7 /* ProfileCollectionViewCell.swift in Sources */,
@@ -501,7 +499,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -556,7 +554,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

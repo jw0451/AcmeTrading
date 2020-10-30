@@ -10,6 +10,7 @@ import Foundation
 enum APIError: Error {
     case JSONError
     case unauthorized
+    case serverError
 }
 
 class APIService {
@@ -23,7 +24,6 @@ class APIService {
     func login(username: String, password: String, completionHandler: @escaping (LoginResponse?, Error?) -> Void) {
         // Prepare URL
         let url = URL(string: "https://ho0lwtvpzh.execute-api.us-east-1.amazonaws.com/DummyLogin")
-//        let url = URL(string: "https://eng64gq9e85llj7.m.pipedream.net")
         
         guard let requestUrl = url else { fatalError() }
         // Prepare URL Request Object
@@ -56,7 +56,14 @@ class APIService {
                 
                 print("Response data:\n \(dataString)")
                 if let loginResponse = self.parseLoginJSON(json: data) {
-                    completionHandler(loginResponse, nil)
+                    // handle unauthorised response
+                    if loginResponse.meta.statusCode == 401 {
+                        completionHandler(loginResponse, APIError.unauthorized)
+                    } else if loginResponse.meta.statusCode == 500 {
+                        completionHandler(loginResponse, APIError.serverError)
+                    } else {
+                        completionHandler(loginResponse, nil)
+                    }
                 } else {
                     completionHandler(nil, APIError.JSONError)
                 }
@@ -85,7 +92,6 @@ class APIService {
         }
         // Prepare URL
         let url = URL(string: "https://ypznjlmial.execute-api.us-east-1.amazonaws.com/DummyProfileList")
-//        let url = URL(string: "https://eng64gq9e85llj7.m.pipedream.net")
         guard let requestUrl = url else { fatalError() }
         // Prepare URL Request Object
         var request = URLRequest(url: requestUrl)

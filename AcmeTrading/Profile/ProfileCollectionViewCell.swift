@@ -26,11 +26,9 @@ class ProfileCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let topHeight: CGFloat = 96
-        let bottomHeight: CGFloat = 150 - topHeight
-        let topMargin: CGFloat = 18
+        let topMargin: CGFloat = 13
         let topSpacing: CGFloat = 15
-        let imageSize: CGFloat = topHeight - topMargin * 2
+        let imageSize: CGFloat = 60
         
         let mainStackView = BetterStackView()
         mainStackView.axis = .vertical
@@ -51,7 +49,6 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         topStackView.spacing = topSpacing
         topStackView.backgroundColor = .white
         mainStackView.addArrangedSubview(topStackView)
-        topStackView.autoSetDimension(.height, toSize: topHeight)
         
         let imageContainer = UIView()
         imageContainer.addSubview(imageView)
@@ -76,7 +73,7 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         
         let bottomView = UIView()
         mainStackView.addArrangedSubview(bottomView)
-        bottomView.autoSetDimension(.height, toSize: bottomHeight)
+        bottomView.autoMatch(.height, to: .height, of: topStackView, withMultiplier: 0.5, relation: .lessThanOrEqual)
         starLabel.textColor = .darkBlue
         starLabel.font = UIFont.boldSystemFont(ofSize: 20)
         bottomView.addSubview(starLabel)
@@ -98,9 +95,10 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         contactButton.layer.cornerRadius = 5.0
         contactButton.clipsToBounds = true
         bottomView.addSubview(contactButton)
-        contactButton.autoPinEdge(toSuperviewEdge: .top, withInset: 8.0)
-        contactButton.autoPinEdge(toSuperviewEdge: .bottom, withInset: 8.0)
+        contactButton.autoPinEdge(toSuperviewEdge: .top, withInset: 4.0)
+        contactButton.autoPinEdge(toSuperviewEdge: .bottom, withInset: 4.0)
         contactButton.autoSetDimension(.width, toSize: 80)
+        contactButton.autoSetDimension(.height, toSize: 30, relation: .greaterThanOrEqual)
         contactButton.autoPinEdge(toSuperviewEdge: .right, withInset: topMargin)
     }
     
