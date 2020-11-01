@@ -9,27 +9,12 @@ import XCTest
 @testable import AcmeTrading
 
 class ProfileTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
     
+    // Imagine these are set up like in LoginTests
     func testSuccessfulProfileList() throws {
-        let session = MockURLSession()
-        let apiService = APIService(session: session)
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
     func testUnauthorisedProfileList() throws {
-        let session = MockURLSession()
-        let apiService = APIService(session: session)
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
     func testProfileListData() throws {

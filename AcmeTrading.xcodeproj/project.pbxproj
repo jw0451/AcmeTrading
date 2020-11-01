@@ -16,6 +16,8 @@
 		DE08D6C1254B3D37007A58D7 /* UIImageView+loadURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE08D6C0254B3D37007A58D7 /* UIImageView+loadURL.swift */; };
 		DE08D6C9254B3FDE007A58D7 /* ProfileListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE08D6C8254B3FDE007A58D7 /* ProfileListViewModel.swift */; };
 		DE15AE91254CD6BE009BE58F /* BetterStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE08D69B254A14D5007A58D7 /* BetterStackView.swift */; };
+		DE15AE95254EF656009BE58F /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15AE94254EF656009BE58F /* URLProtocolMock.swift */; };
+		DE15AE99254F02E7009BE58F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15AE98254F02E7009BE58F /* LoginViewModel.swift */; };
 		DE3D64E12548D61800CA33F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D64E02548D61800CA33F7 /* AppDelegate.swift */; };
 		DE3D64E32548D61800CA33F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D64E22548D61800CA33F7 /* SceneDelegate.swift */; };
 		DE3D64E52548D61800CA33F7 /* ProfileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D64E42548D61800CA33F7 /* ProfileListViewController.swift */; };
@@ -27,7 +29,6 @@
 		DE3D65142548D99700CA33F7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D65132548D99700CA33F7 /* LoginViewController.swift */; };
 		DE3D651C2548DA0F00CA33F7 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D651B2548DA0F00CA33F7 /* LoginTests.swift */; };
 		DE3D65242548DCCD00CA33F7 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D65232548DCCD00CA33F7 /* APIService.swift */; };
-		DE3D65292549E23800CA33F7 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D65282549E23800CA33F7 /* MockURLSession.swift */; };
 		DE3D652F2549F33D00CA33F7 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D652E2549F33D00CA33F7 /* LoginResponseModel.swift */; };
 		DE3D65342549F3B800CA33F7 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D65332549F3B800CA33F7 /* ProfileModel.swift */; };
 		DE3D653B2549F55200CA33F7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D653A2549F55200CA33F7 /* UserManager.swift */; };
@@ -79,6 +80,8 @@
 		DE08D6BC254B3B96007A58D7 /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		DE08D6C0254B3D37007A58D7 /* UIImageView+loadURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+loadURL.swift"; sourceTree = "<group>"; };
 		DE08D6C8254B3FDE007A58D7 /* ProfileListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileListViewModel.swift; sourceTree = "<group>"; };
+		DE15AE94254EF656009BE58F /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
+		DE15AE98254F02E7009BE58F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		DE3D64DD2548D61800CA33F7 /* AcmeTrading.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcmeTrading.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE3D64E02548D61800CA33F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE3D64E22548D61800CA33F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,7 +99,6 @@
 		DE3D65132548D99700CA33F7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DE3D651B2548DA0F00CA33F7 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		DE3D65232548DCCD00CA33F7 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
-		DE3D65282549E23800CA33F7 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		DE3D652E2549F33D00CA33F7 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
 		DE3D65332549F3B800CA33F7 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		DE3D653A2549F55200CA33F7 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -181,9 +183,9 @@
 			isa = PBXGroup;
 			children = (
 				DE3D64F72548D61A00CA33F7 /* ProfileTests.swift */,
-				DE3D65282549E23800CA33F7 /* MockURLSession.swift */,
 				DE3D651B2548DA0F00CA33F7 /* LoginTests.swift */,
 				DE3D64F92548D61A00CA33F7 /* Info.plist */,
+				DE15AE94254EF656009BE58F /* URLProtocolMock.swift */,
 			);
 			path = AcmeTradingTests;
 			sourceTree = "<group>";
@@ -213,6 +215,7 @@
 			children = (
 				DE3D652E2549F33D00CA33F7 /* LoginResponseModel.swift */,
 				DE3D65132548D99700CA33F7 /* LoginViewController.swift */,
+				DE15AE98254F02E7009BE58F /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				DE3D65242548DCCD00CA33F7 /* APIService.swift in Sources */,
 				DE08D6AB254A1539007A58D7 /* ALView+PureLayout.m in Sources */,
 				DE08D6B3254A15B8007A58D7 /* GradientButton.swift in Sources */,
+				DE15AE99254F02E7009BE58F /* LoginViewModel.swift in Sources */,
 				DE08D6A9254A1539007A58D7 /* NSArray+PureLayout.m in Sources */,
 				DE15AE91254CD6BE009BE58F /* BetterStackView.swift in Sources */,
 				DE3D64E52548D61800CA33F7 /* ProfileListViewController.swift in Sources */,
@@ -399,9 +403,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE3D65292549E23800CA33F7 /* MockURLSession.swift in Sources */,
 				DE3D64F82548D61A00CA33F7 /* ProfileTests.swift in Sources */,
 				DE3D651C2548DA0F00CA33F7 /* LoginTests.swift in Sources */,
+				DE15AE95254EF656009BE58F /* URLProtocolMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

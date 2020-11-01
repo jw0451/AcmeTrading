@@ -7,8 +7,10 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, LoginViewModelDelegate {
 
+    var viewModel: LoginViewModel?
+    
     let scrollView = UIScrollView()
     let stackView = BetterStackView()
     let logo = UIImageView()
@@ -25,6 +27,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.viewModel = LoginViewModel(delegate: self)
         
         self.navigationController?.isNavigationBarHidden = true
         
@@ -75,6 +79,7 @@ class LoginViewController: UIViewController {
         usernameLabel.textColor = .darkBlue
         stackView.addArrangedSubview(usernameLabel)
 
+        usernameField.accessibilityIdentifier = "usernameField"
         usernameField.placeholder = "E.g. Gary123"
         usernameField.textColor = .black
         let usernameContainer = UIView()
@@ -89,6 +94,7 @@ class LoginViewController: UIViewController {
         passwordLabel.textColor = .darkBlue
         stackView.addArrangedSubview(passwordLabel)
         
+        passwordField.accessibilityIdentifier = "password"
         passwordField.isSecureTextEntry = true
         passwordField.textColor = .black
         let passwordContainer = UIView()
@@ -139,28 +145,14 @@ class LoginViewController: UIViewController {
     }
     
     @objc func loginAction(_ sender: UIButton) {
-        guard var username = usernameField.text, !username.isEmpty, var password = passwordField.text, !password.isEmpty else {
+        guard let username = usernameField.text, !username.isEmpty, let password = passwordField.text, !password.isEmpty else {
             showError()
             return
         }
-        hideError()
         
-        username = "user@morpheustest.com"
-        password = "Password1"
-        APIService().login(username: username, password: password) { (loginResponse, error) in
-            if let error = error {
-                print(error)
-                self.showError()
-            }
-            if let loginResponse = loginResponse {
-                print(loginResponse.data.userMessage)
-                UserManager.shared.authToken = loginResponse.data.authToken
-                UserManager.shared.refreshToken = loginResponse.data.refreshToken
-                DispatchQueue.main.async {
-                    self.showProfileView()
-                }
-            }
-        }
+        hideError()
+
+        viewModel?.login(username: username, password: password)
     }
     
     func hideError() {
@@ -170,15 +162,18 @@ class LoginViewController: UIViewController {
     }
     
     func showError(_ error: String = "Please enter a valid username and password.") {
-        errorLabel.text = error
-        UIView.animate(withDuration: 0.25) {
-            self.errorView.alpha = 1.0
+        DispatchQueue.main.async {
+            self.errorLabel.text = error
+            UIView.animate(withDuration: 0.25) {
+                self.errorView.alpha = 1.0
+            }
         }
     }
     
-    func showProfileView() {
-        let profileVC = ProfileListViewController()
-        self.navigationController?.pushViewController(profileVC, animated: true)
+    func showViewController(_ vc: UIViewController) {
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc func registerAction(_ sender: UIButton) {

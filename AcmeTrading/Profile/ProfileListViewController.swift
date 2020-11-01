@@ -11,10 +11,12 @@ class ProfileListViewController: UIViewController, UICollectionViewDataSource, U
 
     private var collectionView: UICollectionView?
     private let viewModel = ProfileListViewModel()
-    private let refreshControl = UIRefreshControl()
+    private var refreshControl: UIRefreshControl?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refreshControl = UIRefreshControl()
         
         self.navigationController?.isNavigationBarHidden = true
         
@@ -35,8 +37,8 @@ class ProfileListViewController: UIViewController, UICollectionViewDataSource, U
         collectionView.autoPinEdgesToSuperviewEdges()
         refreshList()
         
-        refreshControl.tintColor = .accentTeal
-        refreshControl.addTarget(self, action: #selector(refreshList), for: .valueChanged)
+        refreshControl?.tintColor = .accentTeal
+        refreshControl?.addTarget(self, action: #selector(refreshList), for: .valueChanged)
         collectionView.refreshControl = refreshControl
     }
     
@@ -44,7 +46,7 @@ class ProfileListViewController: UIViewController, UICollectionViewDataSource, U
         viewModel.getProfiles { (_) in
             DispatchQueue.main.async {
                 self.collectionView?.reloadData()
-                self.refreshControl.endRefreshing()
+                self.refreshControl?.endRefreshing()
             }
         }
     }

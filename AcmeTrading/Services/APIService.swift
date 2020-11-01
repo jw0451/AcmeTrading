@@ -11,10 +11,28 @@ enum APIError: Error {
     case JSONError
     case unauthorized
     case serverError
+    var localizedDescription: String {
+            
+            let message : String
+            
+            switch self {
+            case .JSONError:
+                message = "There was a problem parsing the JSON"
+            case .unauthorized:
+                message = "This username and password combination is not valid"
+            case .serverError:
+                message = "There was a problem with the server"
+            }
+            
+            return message
+        }
 }
 
 class APIService {
     
+    static let loginURLString = "https://ho0lwtvpzh.execute-api.us-east-1.amazonaws.com/DummyLogin"
+    static let profileListURLString =  "https://ypznjlmial.execute-api.us-east-1.amazonaws.com/DummyProfileList"
+
     fileprivate let session: URLSession
     
     init(session: URLSession = URLSession.shared) {
@@ -23,7 +41,7 @@ class APIService {
     
     func login(username: String, password: String, completionHandler: @escaping (LoginResponse?, Error?) -> Void) {
         // Prepare URL
-        let url = URL(string: "https://ho0lwtvpzh.execute-api.us-east-1.amazonaws.com/DummyLogin")
+        let url = URL(string: APIService.loginURLString)
         
         guard let requestUrl = url else { fatalError() }
         // Prepare URL Request Object
@@ -91,7 +109,7 @@ class APIService {
             return
         }
         // Prepare URL
-        let url = URL(string: "https://ypznjlmial.execute-api.us-east-1.amazonaws.com/DummyProfileList")
+        let url = URL(string: APIService.profileListURLString)
         guard let requestUrl = url else { fatalError() }
         // Prepare URL Request Object
         var request = URLRequest(url: requestUrl)

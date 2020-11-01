@@ -9,37 +9,130 @@ import XCTest
 @testable import AcmeTrading
 
 class LoginTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    let testResponseJson = """
+    {
+        "data": {
+            "user_message": "Successfully logged in",
+            "auth_token": "tokenWithAuthority",
+            "refresh_token": "tokenThatIsRefreshing"
+        },
+        "meta": {
+            "status_code": 200,
+            "reason": "ok"
+        }
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    """
+    
+    let unauthorisedResponseJson = """
+    {
+        "data": {
+            "user_message": "Incorrect username/password combination"
+        },
+        "meta": {
+            "status_code": 401,
+            "reason": "ok"
+        }
     }
-
+    """
+    
+    let failedResponseJson = """
+    {
+        "data": {
+            "user_message": "Something randomly went wrong"
+        },
+        "meta": {
+            "status_code": 500,
+            "reason": "Something randomly went wrong"
+        }
+    }
+    """
+    
+    
     func testSuccessfulLogin() throws {
-        let session = MockURLSession()
-        let apiService = APIService(session: session)
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        guard let jsonData = testResponseJson.data(using: .utf8), let url = URL(string: APIService.loginURLString) else {
+            XCTFail()
+            return
+        }
+
+        let username = "test"
+        let password = "pass"
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        URLProtocolMock.mockURLs = [url: (nil, jsonData, response)]
+
+        let sessionConfiguration = URLSessionConfiguration.ephemeral
+        sessionConfiguration.protocolClasses = [URLProtocolMock.self]
+        let mockSession = URLSession(configuration: sessionConfiguration)
+
+        let apiService = APIService(session: mockSession)
+        
+        let expectation = self.expectation(description: "Logging in")
+        
+        apiService.login(username: username, password: password) { (loginResponse, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(loginResponse)
+            XCTAssert(loginResponse?.data.authToken == "tokenWithAuthority")
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    func testUnauthorisedLogin() throws {
+        guard let jsonData = unauthorisedResponseJson.data(using: .utf8), let url = URL(string: APIService.loginURLString) else {
+            XCTFail()
+            return
+        }
+
+        let username = "test"
+        let password = "pass"
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        URLProtocolMock.mockURLs = [url: (nil, jsonData, response)]
+
+        let sessionConfiguration = URLSessionConfiguration.ephemeral
+        sessionConfiguration.protocolClasses = [URLProtocolMock.self]
+        let mockSession = URLSession(configuration: sessionConfiguration)
+
+        let apiService = APIService(session: mockSession)
+        
+        let expectation = self.expectation(description: "Logging in")
+        
+        apiService.login(username: username, password: password) { (loginResponse, error) in
+            XCTAssertNotNil(error)
+            XCTAssert(loginResponse?.meta.statusCode == 401)
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    func testFailedLogin() throws {
+        guard let jsonData = failedResponseJson.data(using: .utf8), let url = URL(string: APIService.loginURLString) else {
+            XCTFail()
+            return
+        }
+
+        let username = "test"
+        let password = "pass"
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        URLProtocolMock.mockURLs = [url: (nil, jsonData, response)]
+
+        let sessionConfiguration = URLSessionConfiguration.ephemeral
+        sessionConfiguration.protocolClasses = [URLProtocolMock.self]
+        let mockSession = URLSession(configuration: sessionConfiguration)
+
+        let apiService = APIService(session: mockSession)
+        
+        let expectation = self.expectation(description: "Logging in")
+        
+        apiService.login(username: username, password: password) { (loginResponse, error) in
+            XCTAssertNotNil(error)
+            XCTAssert(loginResponse?.meta.statusCode == 500)
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
     }
 
     func testLoginData() throws {
-        let jsonString = """
-        {
-            "data": {
-                "user_message": "Successfully logged in",
-                "auth_token": "eyJhbGciOiJIUzI1NiIsInR5cGUiOiJKV1QiLCJ0b2tlbl90eXBlIjoiYWNjZXNzIn0.eyJzdWIiOiIxMjM0N TY3ODkwIiwibmFtZSI6IlVzZXIgTW9ycGhldXMiLCJpYXQiOjE1MTYyMzkwMjIsImV4cGlyZXMiOiIxNTE2MjM 5MDIyIn0.FiSWp-i8rG-LO-pJSYg27a5IF23LI_WecJkJ8mqPob8",
-                "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cGUiOiJKV1QiLCJ0b2tlbl90eXBlIjoicmVmcmVzaCJ9.eyJzdWIiOiIxMjM0 NTY3ODkwIiwibmFtZSI6IlVzZXIgTW9ycGhldXMiLCJpYXQiOjE1MTYyMzkwMjIsImV4cGlyZXMiOiIxNTE2OT k5MDIyIn0.8ZUYINyNq5J38DF785neJzbRe6-lpBg7AQuoeAmuzEo"
-            },
-            "meta": {
-                "status_code": 200,
-                "reason": "ok"
-            }
-        }
-        """
-        guard let jsonData = jsonString.data(using: .utf8) else {
+        
+        guard let jsonData = testResponseJson.data(using: .utf8) else {
             XCTFail()
             return
         }

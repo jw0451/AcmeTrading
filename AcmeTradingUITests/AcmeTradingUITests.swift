@@ -9,34 +9,26 @@ import XCTest
 
 class AcmeTradingUITests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testExample() throws {
-        // UI tests must launch the application that they test.
+        
         let app = XCUIApplication()
+
         app.launch()
+        
+        let scrollViewsQuery = app.scrollViews
+        let elementsQuery = scrollViewsQuery.otherElements
+        let usernamefieldTextField = elementsQuery/*@START_MENU_TOKEN@*/.textFields["usernameField"]/*[[".textFields[\"E.g. Gary123\"]",".textFields[\"usernameField\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        usernamefieldTextField.tap()
+        usernamefieldTextField.typeText("user@morpheustest.com")
+        
+        let passwordTextField = app.secureTextFields["password"]
+        passwordTextField.tap()
+        passwordTextField.typeText("Password1")
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+        elementsQuery.buttons["LOG IN"].tap()
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+        app.collectionViews.otherElements.containing(.button, identifier:"Menu").children(matching: .button).matching(identifier: "Menu").element(boundBy: 1).tap()
+
+                app.sheets.scrollViews.otherElements.buttons["Log out"].tap()
     }
 }
